@@ -25,7 +25,6 @@ class TableViewController: UITableViewController, UIAlertViewDelegate {
         loadData()
     }
     
-    
     func loadData() {
         refMeal.observe(DataEventType.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
@@ -98,21 +97,10 @@ class TableViewController: UITableViewController, UIAlertViewDelegate {
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let groupRef = refMeal.child(mealList[indexPath.row].id)
-            
             groupRef.removeValue()
             mealList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -136,10 +124,6 @@ class TableViewController: UITableViewController, UIAlertViewDelegate {
                 self.updateMeal(id: id, name: name!, poster: meal.poster)
             }
             
-            let deleteAction = UIAlertAction(title: "Delete", style: .default) { (_) in
-                self.deleteMeal(id: meal.id)
-            }
-            
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
             
             alertController.addTextField(configurationHandler: { (textField) in
@@ -147,7 +131,6 @@ class TableViewController: UITableViewController, UIAlertViewDelegate {
             })
             
             alertController.addAction(confirmAction)
-            alertController.addAction(deleteAction)
             alertController.addAction(cancelAction)
             
             present(alertController, animated: true, completion: nil)
@@ -160,10 +143,6 @@ class TableViewController: UITableViewController, UIAlertViewDelegate {
     func updateMeal(id: String,name: String, poster: String) {
             let meal = ["mealId": id, "mealName":name, "sender": poster]
             refMeal.child(id).setValue(meal)
-    }
-    
-    func deleteMeal(id: String) {
-        refMeal.child(id).setValue(nil)
     }
 
     /*

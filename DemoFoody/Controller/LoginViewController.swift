@@ -20,7 +20,16 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print((Auth.auth().currentUser?.email ?? "")!)
-        // Do any additional setup after loading the view.
+        checkIfUserIsLogIn()
+    }
+    
+    private func checkIfUserIsLogIn() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                let controller = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                self.present(controller!, animated: true, completion: nil)
+            }
+        }
     }
     
     
