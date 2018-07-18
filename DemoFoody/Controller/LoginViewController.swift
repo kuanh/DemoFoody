@@ -14,9 +14,12 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var passWord: UITextField!
+    
+    var myUser:User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print((Auth.auth().currentUser?.email ?? "")!)
         // Do any additional setup after loading the view.
     }
     
@@ -31,6 +34,8 @@ class LoginViewController: UIViewController {
             Auth.auth().signIn(withEmail: userName.text!, password: passWord.text!) { (user, error) in
                 if error == nil {
                     print("You have successfully signed up")
+                    print(user?.user.email ?? "")
+                    self.myUser?.userName = (user?.user.email)!
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
                     self.present(vc!, animated: true, completion: nil)
                 } else {

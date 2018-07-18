@@ -7,41 +7,64 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UIAlertViewDelegate {
     
-    var meal: [String] = []
+    var mealList: [Meal] = []
+    var sender: String = ""
+    var refMeal: DatabaseReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let db = Database.database().reference()
-//
-//        let messageDb = Database.database().reference(withPath: "Messages")
-//        let messageBody = messageDb.child("MessageBody")
-//        let sender = messageDb.child("Sender")
-        
+        refMeal = Database.database().reference().child("meal")
+        sender = (Auth.auth().currentUser?.email)!
+        loadData()
     }
-    @IBAction func addButton(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Add New Meal", message: "", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction) -> Void in })
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (alert) -> Void in
-            let meal = alertController.textFields![0] as UITextField
-            self.meal.append(meal.text!)
-            })
-        alertController.addTextField { (textField: UITextField!) in
-            textField.placeholder = "Enter meal"
+    
+    
+    func loadData() {
+        refMeal.observe(DataEventType.value) { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.mealList.removeAll()
+                
+                for meals in snapshot.children.allObjects as! [DataSnapshot] {
+                    let mealObject = meals.value as? [String: AnyObject]
+                    let id = mealObject?["mealId"]
+                    let mealName = mealObject?["mealName"]
+                    let poster = mealObject?["sender"] as! String
+                    
+                    let meal = Meal(id: (id as? String)!, mealName: (mealName as? String)!, poster: poster)
+                    self.mealList.append(meal)
+                }
+                
+                self.tableView.reloadData()
+            }
         }
-        
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
+        if buttonIndex == 1 {
+            let meal = alertView.textField(at: 0)!.text!
+            
+            //add new meal
+            let key = refMeal.childByAutoId().key
+            let mealFB = ["mealId":key,
+                          "mealName": meal,
+                          "sender": sender] as [String : Any]
+            refMeal.child(key).setValue(mealFB)
+            tableView.reloadData()
+        }
+    }
+    
+    @IBAction func addButton(_ sender: UIBarButtonItem) {
+        let alert = UIAlertView(title: "Enter new meal", message: nil, delegate: self, cancelButtonTitle: "Cancel")
+        alert.addButton(withTitle: "Done")
+        alert.alertViewStyle = .plainTextInput
+        alert.show()
     }
 
     // MARK: - Table view data source
@@ -62,14 +85,15 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return meal.count
+        return mealList.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        cell.textLabel?.text = meal[indexPath.row]
+        cell.textLabel?.text = mealList[indexPath.row].mealName
+        cell.detailTextLabel?.text = mealList[indexPath.row].poster
 
         return cell
     }
@@ -83,32 +107,64 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let groupRef = refMeal.child(mealList[indexPath.row].id)
+            
+            groupRef.removeValue()
+            mealList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let meal = mealList[indexPath.row]
+        
+        if sender == meal.poster {
+            let alertController = UIAlertController(title: meal.mealName, message: "Give new values to update", preferredStyle: .alert)
+            
+            let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+                let id = meal.id
+                
+                let name = alertController.textFields?[0].text
+                
+                self.updateMeal(id: id, name: name!, poster: meal.poster)
+            }
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .default) { (_) in
+                self.deleteMeal(id: meal.id)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+            
+            alertController.addTextField(configurationHandler: { (textField) in
+                textField.text = meal.mealName
+            })
+            
+            alertController.addAction(confirmAction)
+            alertController.addAction(deleteAction)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+        } else {
+            let alert = Helper()
+            alert.showAlert(title: "ERROR", message: "You are not poster", on: self)
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    func updateMeal(id: String,name: String, poster: String) {
+            let meal = ["mealId": id, "mealName":name, "sender": poster]
+            refMeal.child(id).setValue(meal)
     }
-    */
+    
+    func deleteMeal(id: String) {
+        refMeal.child(id).setValue(nil)
+    }
 
     /*
     // MARK: - Navigation

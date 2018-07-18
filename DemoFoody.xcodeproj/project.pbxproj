@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		51C24FC9E2FA1CBD7CD39915 /* Pods_DemoFoody.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA6C2F7046F26645E108D6 /* Pods_DemoFoody.framework */; };
+		8B6FC97B20FEE0CD00DAD7E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6FC97A20FEE0CD00DAD7E5 /* GoogleService-Info.plist */; };
+		8B6FC97D20FEE25300DAD7E5 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6FC97C20FEE25300DAD7E5 /* Meal.swift */; };
+		8B6FC98020FF1BA700DAD7E5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6FC97F20FF1BA700DAD7E5 /* Helper.swift */; };
 		8BAAB89520FDA687007A4FED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB89420FDA687007A4FED /* AppDelegate.swift */; };
 		8BAAB89720FDA687007A4FED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB89620FDA687007A4FED /* ViewController.swift */; };
 		8BAAB89A20FDA687007A4FED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAB89820FDA687007A4FED /* Main.storyboard */; };
 		8BAAB89C20FDA688007A4FED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAB89B20FDA688007A4FED /* Assets.xcassets */; };
 		8BAAB89F20FDA688007A4FED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAB89D20FDA688007A4FED /* LaunchScreen.storyboard */; };
-		8BAAB8A720FDA7EF007A4FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAB8A620FDA7EF007A4FED /* GoogleService-Info.plist */; };
-		8BAC3C4820FDCFC900F43FC9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3C4720FDCFC900F43FC9 /* Message.swift */; };
 		8BAC3C4B20FDD3A600F43FC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3C4A20FDD3A600F43FC9 /* User.swift */; };
 		8BAC3C4E20FDD5B600F43FC9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3C4D20FDD5B600F43FC9 /* SignUpViewController.swift */; };
 		8BAC3C5020FDE13E00F43FC9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3C4F20FDE13E00F43FC9 /* LoginViewController.swift */; };
-		8BAC3C5220FDF73600F43FC9 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3C5120FDF73600F43FC9 /* LogOutViewController.swift */; };
 		8BE5484520FDC1BC00E9325A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE5484420FDC1BC00E9325A /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +26,9 @@
 		003A0D9D4FCBBF9E2F8E1EBF /* Pods-DemoFoody.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoFoody.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoFoody/Pods-DemoFoody.debug.xcconfig"; sourceTree = "<group>"; };
 		0AFA6C2F7046F26645E108D6 /* Pods_DemoFoody.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoFoody.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF43F7DD04A0DC48CB01803 /* Pods-DemoFoody.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoFoody.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoFoody/Pods-DemoFoody.release.xcconfig"; sourceTree = "<group>"; };
+		8B6FC97A20FEE0CD00DAD7E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B6FC97C20FEE25300DAD7E5 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		8B6FC97F20FF1BA700DAD7E5 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		8BAAB89120FDA687007A4FED /* DemoFoody.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoFoody.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAAB89420FDA687007A4FED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BAAB89620FDA687007A4FED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,12 +36,9 @@
 		8BAAB89B20FDA688007A4FED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BAAB89E20FDA688007A4FED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BAAB8A020FDA688007A4FED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8BAAB8A620FDA7EF007A4FED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8BAC3C4720FDCFC900F43FC9 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8BAC3C4A20FDD3A600F43FC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8BAC3C4D20FDD5B600F43FC9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		8BAC3C4F20FDE13E00F43FC9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		8BAC3C5120FDF73600F43FC9 /* LogOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
 		8BE5484420FDC1BC00E9325A /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +63,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8B6FC97E20FF1B2600DAD7E5 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				8B6FC97F20FF1BA700DAD7E5 /* Helper.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		8BAAB88820FDA687007A4FED = {
 			isa = PBXGroup;
 			children = (
@@ -84,9 +92,10 @@
 		8BAAB89320FDA687007A4FED /* DemoFoody */ = {
 			isa = PBXGroup;
 			children = (
+				8B6FC97E20FF1B2600DAD7E5 /* Supporting */,
+				8B6FC97A20FEE0CD00DAD7E5 /* GoogleService-Info.plist */,
 				8BAC3C4C20FDD59C00F43FC9 /* Controller */,
 				8BAC3C4920FDD1FF00F43FC9 /* Model */,
-				8BAAB8A620FDA7EF007A4FED /* GoogleService-Info.plist */,
 				8BAAB89420FDA687007A4FED /* AppDelegate.swift */,
 				8BAAB89820FDA687007A4FED /* Main.storyboard */,
 				8BAAB89B20FDA688007A4FED /* Assets.xcassets */,
@@ -99,8 +108,8 @@
 		8BAC3C4920FDD1FF00F43FC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8BAC3C4720FDCFC900F43FC9 /* Message.swift */,
 				8BAC3C4A20FDD3A600F43FC9 /* User.swift */,
+				8B6FC97C20FEE25300DAD7E5 /* Meal.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -112,7 +121,6 @@
 				8BE5484420FDC1BC00E9325A /* TableViewController.swift */,
 				8BAC3C4D20FDD5B600F43FC9 /* SignUpViewController.swift */,
 				8BAC3C4F20FDE13E00F43FC9 /* LoginViewController.swift */,
-				8BAC3C5120FDF73600F43FC9 /* LogOutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,7 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BAAB89F20FDA688007A4FED /* LaunchScreen.storyboard in Resources */,
-				8BAAB8A720FDA7EF007A4FED /* GoogleService-Info.plist in Resources */,
+				8B6FC97B20FEE0CD00DAD7E5 /* GoogleService-Info.plist in Resources */,
 				8BAAB89C20FDA688007A4FED /* Assets.xcassets in Resources */,
 				8BAAB89A20FDA687007A4FED /* Main.storyboard in Resources */,
 			);
@@ -247,11 +255,11 @@
 				8BAC3C5020FDE13E00F43FC9 /* LoginViewController.swift in Sources */,
 				8BAC3C4E20FDD5B600F43FC9 /* SignUpViewController.swift in Sources */,
 				8BAAB89720FDA687007A4FED /* ViewController.swift in Sources */,
-				8BAC3C4820FDCFC900F43FC9 /* Message.swift in Sources */,
 				8BE5484520FDC1BC00E9325A /* TableViewController.swift in Sources */,
+				8B6FC97D20FEE25300DAD7E5 /* Meal.swift in Sources */,
 				8BAC3C4B20FDD3A600F43FC9 /* User.swift in Sources */,
-				8BAC3C5220FDF73600F43FC9 /* LogOutViewController.swift in Sources */,
 				8BAAB89520FDA687007A4FED /* AppDelegate.swift in Sources */,
+				8B6FC98020FF1BA700DAD7E5 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,13 +405,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YKV47X6L73;
+				DEVELOPMENT_TEAM = RT689AHQ26;
 				INFOPLIST_FILE = DemoFoody/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hoangAnh.DemoFoody;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.foody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -416,13 +425,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YKV47X6L73;
+				DEVELOPMENT_TEAM = RT689AHQ26;
 				INFOPLIST_FILE = DemoFoody/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hoangAnh.DemoFoody;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.foody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
